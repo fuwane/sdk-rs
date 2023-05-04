@@ -6,3 +6,6 @@
 
 # Editor
 *.*-*
+
+# User
+/.cargo
