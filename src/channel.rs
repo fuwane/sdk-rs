@@ -7,7 +7,7 @@ use extism_pdk::{ Json, var::{ set, get, remove } };
 
 use anyhow::Error;
 
-use fuwane_foundation::Context;
+pub use fuwane_foundation::binding::Context;
 
 use super::STEREO_FRAME_BYTE_SIZE;
 
@@ -19,7 +19,7 @@ impl ContextManager {
         get(&self.key).context("Failed to get context.")
     }
 
-    pub fn get<'a>(&self) -> Result<Json<Context>, Error> {
+    pub fn get(&self) -> Result<Json<Context>, Error> {
         if let Some(ctx) = self.get_impl()? { Ok(ctx) }
         else { Ok(Json(Context::default())) }
     }
@@ -41,6 +41,10 @@ pub struct BufferManager { pub(crate) key: String }
 impl BufferManager {
     pub fn set(&mut self, data: [u8;STEREO_FRAME_BYTE_SIZE]) -> Result<(), Error> {
         set(&self.key, data.iter().as_slice()).context("Failed to set audio to buffer.")
+    }
+
+    pub fn get(&self) -> Result<Option<Vec<u8>>, Error> {
+        get(&self.key).context("Failed to get data from audio buffer.")
     }
 }
 
