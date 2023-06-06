@@ -1,5 +1,3 @@
-//! FuwaNe SDK - 
-
 use std::{ future::Future, collections::HashMap };
 
 use tokio::{runtime::{ Runtime, Builder }, spawn};

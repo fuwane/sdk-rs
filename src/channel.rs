@@ -1,5 +1,3 @@
-//! FuwaNe SDK - Channel
-
 extern crate serde;
 
 use anyhow::Context as AHContext;
@@ -68,7 +66,7 @@ impl From<u64> for Channel {
         Self {
             id: channel_id, id_i64: channel_id as _,
             ctx: ContextManager { key: format!("{}c", channel_string) },
-            buffer: BufferManager { key: format!("{}b", channel_string) }
+            buffer: BufferManager { key: format!("{}b,", channel_string) }
         }
     }
 }
