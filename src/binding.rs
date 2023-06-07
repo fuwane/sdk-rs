@@ -6,7 +6,9 @@ use tokio::spawn;
 use super::{ EVENT_CHANNEL, Event, event::ChannelEvent };
 
 
-extern "C" {
+
+#[host_fn]
+extern "ExtismHost" {
     pub fn play(channel_id_i64: i64, is_stereo: i32);
     pub fn send_audio_data(channel_id_i64: i64) -> (i64, i64);
 }
